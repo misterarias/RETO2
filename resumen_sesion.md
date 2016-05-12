@@ -1,4 +1,4 @@
-# RETO 2 - Resumen sesion en BlueTab
+# RETO 2 - Resumen sesión en BlueTab
 
 ## Objetivos
 
@@ -18,6 +18,7 @@ Cada uno de los participantes nos cuenta como ha solucionado el Reto.
 A destacar:
 - Juan nos ha contado sobre sus intentos, al parecer no demasiado satisfactorios, de poner ZeroMQ como gestor de una cola para deacoplar el servidor web de la inserción en la base de datos. Suena muy bien y encaja con una de las ideas para el RETO 3, así que volveremos sobre el tema.
 - Iñigo parece haber obtenido unos resultados de rendimiento buenísimos con el "clusterize" de Node JS. Va a ser una de las cosas que probemos en el RETO2.
+ 
 En general, parece que el mayor problema de la solución planteada incialmente es la creación de una conexión y una transacción por cada petición HTTP, aunque eso también tiene ventajas.
 Sin mencionar el término, hablamos de las restriciones del famoso CAP ... un tema que necesariamente volverá a salir.
 
@@ -29,7 +30,7 @@ Del ELK habla un poco Juan en el README.md, así que no me extiendo aquí.
 
 ## SDN
 
-Esto Iñigo y Leticia no lo pillaron, porque creo que lo hablé durante las cervezas.
+Iñigo y Leticia no saben ésto, porque creo que lo hablé durante las cervezas.
 Hay un meetup de SDN el día 25 de Mayo.
 Me gustaría ir, y que vinieseis los que estéis interesados, pero nos coincide con la sesión.
 Podríamos cambiarla, o podríamos intentar seguir el progreso offline y plantear el RETO3 offline.
