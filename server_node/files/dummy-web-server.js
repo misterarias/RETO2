@@ -29,11 +29,13 @@ function process(pool, req, res) {
 		}
 	
 		pool.getConnection(function(err, connection){
-        		if (err) {
-				connection.release(); 
-				cosole.log(err);
-          			return;
-        		}  
+      if (err) {
+        console.log(err);
+        if (connection !== undefined) {
+          connection.release(); 
+        }
+        return;
+      }  
 
         		connection.query("insert into reto values (?, now())", os.cpus().length, function(err, result) {
 				connection.release();
