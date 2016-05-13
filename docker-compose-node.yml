@@ -1,0 +1,31 @@
+version: '2'
+services:
+  db:
+    build: ./DB
+    ports:
+      - 3306:3306
+    expose: 
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: passwd
+
+  server:
+    build: ./server_node
+    ports:
+      - 8888:80
+    links:
+      - db:db
+    expose:
+      - 80
+  
+  tsung:
+    build: ./load
+    links:
+      - server:reto1server
+    expose:
+      - 80
+    ports:
+      - 80:80
+    environment:
+      RATE: 10
+      HITS: 10
