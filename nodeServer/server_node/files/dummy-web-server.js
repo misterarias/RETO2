@@ -28,31 +28,34 @@ function process(pool, req, res) {
 			return;
 		}
 	
-		pool.getConnection(function(err, connection){
-        		if (err) {
-				connection.release(); 
-				cosole.log(err);
-          			return;
-        		}  
-
-        		connection.query("insert into reto values (?, now())", os.cpus().length, function(err, result) {
-				connection.release();
-				
-				if (err) {
-					console.log(err);
-					return;
-				} 
-
-				res.writeHead(200);
-				res.end('<html><body><h1>POST!</h1></body></html>');
-        		});
-
-        		connection.on('error', function(err) {      
-                		console.log(err);
-        		});
-		});
+    pool.getConnection(function(err, connection) {
+      if (err) {
+        console.log(err);
+        if (connection !== undefined) {
+          connection.release(); 
+        }
+        res.writeHead(500);
+        res.end('<html><body><h1>Error</h1><p>' + err + '</p></body></html>');
+        return;
+      }  
+  
+      connection.query("insert into reto1 values (?, now())", os.cpus().length, function(err, result) {
+        connection.release();
+  
+        if (err) {
+          console.log(err);
+          return;
+        } 
+  
+        res.writeHead(200);
+        res.end('<html><body><h1>POST!</h1></body></html>');
+      });
+  
+      connection.on('error', function(err) {      
+        console.log(err);
+      });
+    });
 	});
-
 }
 
 function createServer() {
@@ -61,7 +64,7 @@ function createServer() {
 		host     : 'db',
 		user     : 'root',
 		password : 'passwd',
-		database : 'reto',
+		database : 'reto1',
 		debug    : false
 	});
 
