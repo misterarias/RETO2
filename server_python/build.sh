@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo docker build -t reto1server .
+docker build -t reto1server .

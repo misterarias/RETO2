@@ -4,6 +4,10 @@ MAINTAINER Inigo Crespo Bluetab
 RUN apk add --update nodejs && \
     npm install mysql
 
+RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk update && apk --update add dstat@testing
+
+
 ADD files/dummy-web-server.js /root/dummy-web-server.js
 ADD files/start.sh /root/start.sh
 

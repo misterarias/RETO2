@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo docker build -t reto1db .
+docker build -t reto1db .
