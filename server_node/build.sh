@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t server_node .
+docker build -t reto1server .
