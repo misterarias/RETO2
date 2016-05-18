@@ -1,8 +1,11 @@
 #!/bin/bash
 
 /entrypoint.sh mysqld &
-sleep 60
-mysql -h$HOSTNAME -uroot -ppasswd --execute="CREATE DATABASE reto1;"
-mysql -h$HOSTNAME -uroot -ppasswd reto1 --execute="CREATE TABLE reto1 (value VARCHAR(100) NOT NULL, insert_time TIMESTAMP NOT NULL);"
-
+until mysql -h$HOSTNAME -uroot -ppasswd --execute="CREATE DATABASE reto1;"
+do
+  echo "Creating database failed. Trying again in three seconds ..."
+  sleep 3
+done
+mysql -h$HOSTNAME -uroot -ppasswd reto1 --execute="CREATE TABLE reto1 (creation_time DATETIME(6), insert_time DATETIME(6) );"
+echo Done!!!!!
 wait %1
