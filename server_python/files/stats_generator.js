@@ -29,8 +29,7 @@ function _comeon(line, csv) {
 			}
 			return;
 		}
-
-		connection.query("select count(*) as kount from reto1 where insert_time=from_unixtime(?)", parseInt(csv[0]), function(err, result) {
+		connection.query("select count(*) as kount,  avg(insert_time - creation_time) as average from reto1 where insert_time <= from_unixtime(?) && insert_time > from_unixtime(?)", [parseInt(csv[0]), parseInt(csv[0]) - 60], function(err, result) {
 			if (err) {
 				console.log(err);
 				if (connection !== undefined) {
@@ -39,7 +38,7 @@ function _comeon(line, csv) {
 				return;
 			}
 			connection.release();
-			console.log(line + ',' + result[0].kount + ',300');
+			console.log(line + ',' + result[0].kount + ',' + (result[0].average ? result[0].average : 0);
 		});
 
 		connection.on('error', function(err) {

@@ -55,7 +55,7 @@ class S(BaseHTTPRequestHandler):
         global x
         global line_number
         postvars = self.parse_POST()
-        x.execute("""INSERT INTO reto1 VALUES (%s, now())""", (postvars.get("value")))
+        x.execute("""INSERT INTO reto1 VALUES (%s, current_timestamp(6) )""", (postvars.get("value")))
         line_number += 1
         if line_number == 20:
             mysql_conn.commit()
