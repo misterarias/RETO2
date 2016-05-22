@@ -4,6 +4,9 @@ MAINTAINER German Blanco
 RUN apk add --update python musl-dev python-dev gcc mysql-client mariadb-dev py-pip && \
     pip install MySQL-python
 
+RUN apk add --update nodejs && \
+    npm install mysql
+
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk update && apk --update add dstat@testing
 

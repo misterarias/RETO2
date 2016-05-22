@@ -41,13 +41,16 @@ function process(pool, req, res) {
       			}  
   
       			connection.query("insert into reto1 values (?, now())", params.value, function(err, result) {
-        			connection.release();
-  
         			if (err) {
           				console.log(err);
+        				if (connection !== undefined) {
+          					connection.release(); 
+        				}
           				return;
         			} 
   
+          			connection.release(); 
+
         			res.writeHead(200);
         			res.end('<html><body><h1>POST!</h1></body></html>');
      			});
