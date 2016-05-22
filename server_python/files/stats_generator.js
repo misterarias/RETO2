@@ -38,7 +38,7 @@ function _comeon(line, csv) {
 				return;
 			}
 			connection.release();
-			console.log(line + ',' + result[0].kount + ',' + (result[0].average ? result[0].average : 0);
+			console.log(line + ',' + result[0].kount + ',' + (result[0].average ? result[0].average : 0));
 		});
 
 		connection.on('error', function(err) {
