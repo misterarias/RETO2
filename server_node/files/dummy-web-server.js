@@ -40,17 +40,20 @@ function process(pool, req, res) {
         			return;
       			}  
   
-      			connection.query("insert into reto1 values (?, current_timestamp(6))", params.value, function(err, result) {
-        			connection.release();
-  
-        			if (err) {
-          				console.log(err);
-          				return;
-        			} 
-  
-        			res.writeHead(200);
-        			res.end('<html><body><h1>POST!</h1></body></html>');
-     			});
+            connection.query("insert into reto1 values (?, current_timestamp(6))", params.value, function(err, result) {
+              connection.release();
+
+              if (err) {
+                console.log(err);
+                if (connection !== undefined) {
+                  connection.release(); 
+                }
+                return;
+              } 
+
+              res.writeHead(200);
+              res.end('<html><body><h1>POST!</h1></body></html>');
+            });
   
       			connection.on('error', function(err) {      
         			console.log(err);
