@@ -40,7 +40,7 @@ function process(pool, req, res) {
         			return;
       			}  
   
-      			connection.query("insert into reto1 values (?, now())", params.value, function(err, result) {
+      			connection.query("insert into reto1 values (?, current_timestamp(6))", params.value, function(err, result) {
         			connection.release();
   
         			if (err) {
